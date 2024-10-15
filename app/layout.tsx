@@ -19,7 +19,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.className} !scroll-smooth`}
+      suppressHydrationWarning
+    >
       <head />
       <body className="antialiased">
         <ThemeProvider

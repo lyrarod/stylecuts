@@ -8,10 +8,9 @@ import {
   Scissors,
   Star,
   Phone,
-  Instagram,
   Facebook,
-  Twitter,
   Mail,
+  MessageCircleIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,29 +18,11 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "./mode-toggle";
 
-const NavLink = ({
-  href,
-  children,
-  className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <a
-    href={href}
-    onClick={(e) => {
-      e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }}
-    className={`font-medium ${cn(className)}`}
-  >
-    {children}
-  </a>
-);
+import { motion } from "framer-motion";
+import { InstagramLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import { Link } from "react-scroll";
+
+const MotionButton = motion.create(Button);
 
 const Section = ({
   id,
@@ -50,9 +31,9 @@ const Section = ({
 }: {
   id: string;
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }) => (
-  <section id={id} className={`py-24 ${cn(className)}`}>
+  <section id={id} className={`py-24 overflow-hidden ${cn(className)}`}>
     <div className="container px-4 mx-auto">{children}</div>
   </section>
 );
@@ -74,7 +55,7 @@ export function LandingPage() {
     console.log("Subscribed:", email);
     setEmail("");
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 5000);
+    setTimeout(() => setShowAlert(false), 3000);
   };
 
   return (
@@ -82,23 +63,46 @@ export function LandingPage() {
       <header className="sticky top-0 z-50 shadow-sm backdrop-blur bg-background/60">
         <nav className="container px-4 mx-auto">
           <div className="flex items-center justify-between py-4">
-            <div className="flex items-center select-none">
-              <Scissors className="w-8 h-8 text-purple-600" />
-              <span className="ml-2 text-xl font-bold">StyleCuts</span>
-            </div>
+            <Link to="home" offset={-70}>
+              <div className="flex items-center cursor-pointer select-none">
+                <Scissors className="w-8 h-8 text-primary" />
+                <span className="ml-2 text-xl font-bold">StyleCuts</span>
+              </div>
+            </Link>
             <div className="hidden space-x-8 md:flex">
-              <NavLink href="#home" className="text-primary">
-                Home
-              </NavLink>
-              <NavLink href="#about">About Us</NavLink>
-              <NavLink href="#services">Services</NavLink>
-              <NavLink href="#features">Features</NavLink>
+              {[
+                { to: "home", label: "Home" },
+                { to: "about", label: "About Us" },
+                { to: "services", label: "Services" },
+                { to: "features", label: "Features" },
+              ].map((link, index) => (
+                <Link
+                  key={index}
+                  to={link.to}
+                  href={"#"}
+                  spy={true}
+                  hashSpy={true}
+                  offset={link.to === "home" ? -70 : -67}
+                  activeClass={"active"}
+                  className="font-medium transition hover:text-primary"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
 
             <div className="items-center hidden gap-x-2 md:flex">
               <ModeToggle />
-              <Button>
-                <NavLink href="#contact">Contact</NavLink>
+              <Button asChild>
+                <Link
+                  to="contact"
+                  href={"#"}
+                  spy={true}
+                  hashSpy={true}
+                  offset={0}
+                >
+                  Contact
+                </Link>
               </Button>
             </div>
 
@@ -122,11 +126,27 @@ export function LandingPage() {
           {isOpen && (
             <div className="md:hidden">
               <div className="flex flex-col items-center py-8 gap-y-4">
-                <NavLink href="#home">Home</NavLink>
-                <NavLink href="#about">About Us</NavLink>
-                <NavLink href="#services">Services</NavLink>
-                <NavLink href="#features">Features</NavLink>
-                <NavLink href="#contact">Contact</NavLink>
+                {[
+                  { to: "home", label: "Home" },
+                  { to: "about", label: "About Us" },
+                  { to: "services", label: "Services" },
+                  { to: "features", label: "Features" },
+                  { to: "contact", label: "Contact" },
+                ].map((link, index) => (
+                  <Link
+                    key={index}
+                    to={link.to}
+                    href={"#"}
+                    spy={true}
+                    hashSpy={true}
+                    offset={-270}
+                    activeClass={"active"}
+                    className=""
+                    onClick={() => setIsOpen((prev) => !prev)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             </div>
           )}
@@ -136,7 +156,7 @@ export function LandingPage() {
       <main className="flex-grow">
         <Section
           id="home"
-          className="relative overflow-hidden min-h-[90vh] grid place-items-center"
+          className="relative min-h-[90vh] grid place-items-center"
         >
           <div className="absolute inset-0 z-0">
             <img
@@ -146,21 +166,50 @@ export function LandingPage() {
             />
           </div>
           <div className="relative z-10 text-center">
-            <h1 className="mb-4 text-4xl font-bold md:text-6xl">
+            <motion.h1
+              className="mb-4 text-4xl font-bold md:text-6xl"
+              initial={{ opacity: 0, y: 60 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
               Transform Your Look with{" "}
               <span className="text-primary drop-shadow-md">StyleCuts</span>
-            </h1>
-            <p className="mb-8 text-xl text-muted-foreground">
+            </motion.h1>
+            <motion.p
+              className="mb-8 text-sm md:text-xl text-muted-foreground"
+              initial={{ opacity: 0, y: 60 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
               Experience the art of hairstyling like never before
-            </p>
-            <Button size="lg">Book Now</Button>
+            </motion.p>
+            <MotionButton
+              size="lg"
+              initial={{ opacity: 0, y: 60 }}
+              transition={{ delay: 0.7, duration: 1 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Book Now
+            </MotionButton>
           </div>
         </Section>
 
         <Section id="about" className="">
-          <div className="flex flex-col items-center justify-between mb-10 md:flex-row">
-            <div className="pr-8 mb-8 md:w-1/2 md:mb-0">
-              <h2 className="mb-4 text-3xl font-bold text-primary">About Us</h2>
+          <h2 className="mb-16 text-3xl font-bold text-center text-primary">
+            About Us
+          </h2>
+          <div className="flex flex-col-reverse items-center justify-between md:py-20 md:flex-row">
+            <motion.div
+              className="pr-8 my-8 md:w-1/2 md:mb-0"
+              initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="mb-4 text-xl font-bold text-primary">About Us</h2>
               <p className="mb-4">
                 At StyleCuts, we believe that every haircut is a work of art.
                 Our team of expert stylists combines creativity with precision
@@ -171,19 +220,31 @@ export function LandingPage() {
                 latest trends, we&apos;re committed to helping you look and feel
                 your absolute best.
               </p>
-            </div>
-            <div className="md:w-1/2">
+            </motion.div>
+            <motion.div
+              className="md:w-1/2"
+              initial={{ x: 60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              viewport={{ once: true }}
+            >
               <img
                 src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=2036&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Our team of stylists"
                 className="object-cover w-full h-auto rounded-lg shadow-md"
               />
-            </div>
+            </motion.div>
           </div>
 
-          <div className="flex flex-col items-center justify-between md:flex-row-reverse">
-            <div className="mb-8 md:pl-8 md:w-1/2 md:mb-0">
-              <h2 className="mb-4 text-3xl font-bold text-primary">About Us</h2>
+          <div className="flex flex-col-reverse items-center justify-between md:flex-row-reverse md:py-20">
+            <motion.div
+              className="my-8 md:pl-8 md:w-1/2 md:mb-0"
+              initial={{ x: 60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="mb-4 text-xl font-bold text-primary">About Us</h2>
               <p className="mb-4 ">
                 At StyleCuts, we believe that every haircut is a work of art.
                 Our team of expert stylists combines creativity with precision
@@ -194,14 +255,20 @@ export function LandingPage() {
                 latest trends, we&apos;re committed to helping you look and feel
                 your absolute best.
               </p>
-            </div>
-            <div className="md:w-1/2">
+            </motion.div>
+            <motion.div
+              className="md:w-1/2"
+              initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              viewport={{ once: true }}
+            >
               <img
                 src="https://images.unsplash.com/photo-1600948835780-9c4a8b55cf50?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Our team of stylists"
                 className="object-cover w-full h-auto rounded-lg shadow-md"
               />
-            </div>
+            </motion.div>
           </div>
         </Section>
 
@@ -209,7 +276,7 @@ export function LandingPage() {
           <h2 className="mb-16 text-3xl font-bold text-center text-primary">
             Our Services
           </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:py-20">
             {[
               {
                 name: "Haircuts",
@@ -253,24 +320,34 @@ export function LandingPage() {
                 description:
                   "Precision cuts tailored to your face shape and style preferences.",
               },
-            ].map((service, index) => (
-              <div
-                key={index}
-                className="overflow-hidden rounded-lg shadow-md bg-muted"
-              >
-                <img
-                  src={service.image}
-                  alt={service.name}
-                  className="object-cover w-full h-48"
-                />
-                <div className="p-6">
-                  <h3 className="mb-2 text-xl font-semibold text-primary">
-                    {service.name}
-                  </h3>
-                  <p className="text-muted-foreground">{service.description}</p>
-                </div>
-              </div>
-            ))}
+            ].map((service, index) => {
+              let delay = 0.3 + index * 0.2;
+
+              return (
+                <motion.div
+                  key={index}
+                  className="overflow-hidden bg-white rounded-lg shadow-md dark:bg-muted"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ delay }}
+                  viewport={{ once: true }}
+                >
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="object-cover w-full h-48"
+                  />
+                  <div className="p-6">
+                    <h3 className="mb-2 text-xl font-semibold text-primary">
+                      {service.name}
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {service.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </Section>
 
@@ -278,7 +355,7 @@ export function LandingPage() {
           <h2 className="mb-16 text-3xl font-bold text-center text-primary">
             Why Choose Us
           </h2>
-          <div className="grid grid-cols-1 gap-8 xl:grid-cols-3 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 xl:grid-cols-3 sm:grid-cols-2 md:py-20">
             {[
               {
                 icon: Star,
@@ -316,73 +393,97 @@ export function LandingPage() {
                 description:
                   "We use only the highest quality hair care products to ensure the best results for your hair.",
               },
-            ].map((feature, index) => (
-              <div
-                key={index}
-                className="flex items-start p-6 rounded-lg shadow-md bg-muted"
-              >
-                <feature.icon className="flex-shrink-0 w-12 h-12 mr-4 text-primary" />
-                <div>
-                  <h3 className="mb-2 text-lg font-semibold">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </div>
-              </div>
-            ))}
+            ].map((feature, index) => {
+              let delay = 0.3 + index * 0.2;
+
+              return (
+                <motion.div
+                  key={index}
+                  className="flex items-start p-6 bg-white rounded-lg shadow-md dark:bg-muted"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ delay }}
+                  viewport={{ once: true }}
+                >
+                  <feature.icon className="flex-shrink-0 w-12 h-12 mr-4 text-primary" />
+                  <div>
+                    <h3 className="mb-2 text-lg font-semibold">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {feature.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </Section>
 
         <Section id="contact" className="">
-          <div className="max-w-2xl mx-auto text-center">
+          <div className="max-w-2xl mx-auto text-center md:py-20">
             <h2 className="mb-8 text-3xl font-bold text-primary">Contact Us</h2>
-            <p className="mb-8 text-muted-foreground">
+            <motion.p
+              className="mb-8 text-muted-foreground"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              viewport={{ once: true }}
+            >
               💇‍♀️ Ready for a new look? <br className="md:hidden" /> Get in touch
               with us today!
-            </p>
-            <div className="flex items-center justify-center mb-8">
+            </motion.p>
+            <motion.div
+              className="flex items-center justify-center mb-8"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 1 }}
+              viewport={{ once: true }}
+            >
               <Phone className="mr-2 size-8 text-primary" />
               <span className="text-xl font-semibold">123-456-7890</span>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <Button
-                variant="outline"
-                className="flex flex-col items-center justify-center gap-2 py-8 text-center h-max"
-              >
-                <Instagram className="mr-2 size-6 text-primary" />
-                Instagram
-              </Button>
-              <Button
-                variant="outline"
-                className="flex flex-col items-center justify-center gap-2 py-8 text-center h-max"
-              >
-                <Facebook className="mr-2 size-6 text-primary" />
-                Facebook
-              </Button>
-              <Button
-                variant="outline"
-                className="flex flex-col items-center justify-center gap-2 py-8 text-center h-max"
-              >
-                <Twitter className="mr-2 size-6 text-primary" />
-                Twitter
-              </Button>
-              <Button
-                variant="outline"
-                className="flex flex-col items-center justify-center gap-2 py-8 text-center h-max"
-              >
-                <Twitter className="mr-2 size-6 text-primary" />
-                Twitter
-              </Button>
+            </motion.div>
+            <div className="grid grid-cols-2 gap-4 md:gap-8">
+              {[
+                { icon: InstagramLogoIcon, title: "Instagram" },
+                { icon: Facebook, title: "Facebook" },
+                { icon: TwitterLogoIcon, title: "Twitter" },
+                { icon: MessageCircleIcon, title: "Whatsapp" },
+              ].map((social, index) => {
+                let delay = 1 + index * 0.2;
+
+                return (
+                  <motion.div
+                    key={index}
+                    className="flex flex-col items-center justify-center gap-2 py-8 text-center transition bg-white rounded-md shadow-md cursor-pointer h-max dark:bg-muted hover:bg-primary hover:text-white dark:hover:bg-primary group"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay }}
+                    viewport={{ once: true }}
+                  >
+                    <social.icon className="mr-2 size-7 group-hover:text-white text-primary" />
+                    <span className="text-muted-foreground group-hover:text-white">
+                      {social.title}
+                    </span>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </Section>
 
-        <Section id="newsletter" className="bg-secondary">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="mb-4 text-3xl font-bold">
+        <Section id="newsletter" className="bg-secondary md:py-24">
+          <motion.div
+            className="max-w-4xl mx-auto text-center md:py-20"
+            initial={{ y: 40, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="mb-4 text-xl font-bold md:text-3xl">
               Stay Stylish with Our Newsletter
             </h2>
-            <p className="mb-8 text-muted-foreground">
+            <p className="mb-8 text-sm text-muted-foreground md:text-base">
               Subscribe for the latest hair trends, styling tips, and exclusive
               offers!
             </p>
@@ -397,7 +498,7 @@ export function LandingPage() {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full py-2 pl-10 bg-background placeholder:text-muted-foreground placeholder:italic"
+                  className="w-full py-2 pl-10 bg-background placeholder:text-muted-foreground"
                   required
                 />
               </div>
@@ -413,19 +514,25 @@ export function LandingPage() {
                 </AlertDescription>
               </Alert>
             )}
-          </div>
+          </motion.div>
         </Section>
       </main>
 
       <footer className="py-8 bg-muted">
-        <div className="container px-4 mx-auto text-sm text-center">
+        <motion.div
+          className="container px-4 mx-auto text-sm text-center"
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          viewport={{ once: true }}
+        >
           <p>
             &copy; {new Date().getFullYear()} StyleCuts. All rights reserved.
           </p>
           <p className="mt-2">
             Designed with love 💖 for hair enthusiasts everywhere.
           </p>
-        </div>
+        </motion.div>
       </footer>
     </div>
   );
