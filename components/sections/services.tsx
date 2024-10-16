@@ -9,7 +9,7 @@ export function Services() {
       </h2>
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 md:py-20">
         {services?.map((service, index) => {
-          let delay = 0.5 + index * 0.2;
+          // let delay = 0.3 + index * 0.2;
 
           return (
             <motion.div
@@ -17,8 +17,8 @@ export function Services() {
               className="overflow-hidden bg-white rounded-lg shadow-md dark:bg-muted"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
-              transition={{ delay: delay }}
-              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: false }}
             >
               <img
                 src={service.image}

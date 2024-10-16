@@ -20,29 +20,29 @@ export function Hero() {
       <div className="relative z-10 text-center">
         <motion.h1
           className="mb-4 text-4xl font-bold md:text-6xl"
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 1 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           Transform Your Look with{" "}
           <span className="text-primary drop-shadow-md">StyleCuts</span>
         </motion.h1>
         <motion.p
-          className="mb-8 text-sm md:text-xl text-muted-foreground"
-          initial={{ opacity: 0, y: 60 }}
+          className="mb-8 text-sm md:text-xl text-muted-foreground px-10 sm:px-0"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           Experience the art of hairstyling like never before
         </motion.p>
         <MotionButton
           size="lg"
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 1 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           Book Now
         </MotionButton>

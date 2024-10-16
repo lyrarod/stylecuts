@@ -10,20 +10,20 @@ export function Contact() {
         <h2 className="mb-8 text-3xl font-bold text-primary">Contact Us</h2>
         <motion.p
           className="mb-8 text-muted-foreground"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          viewport={{ once: true }}
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          transition={{ delay: 0.3 }}
+          viewport={{ once: false }}
         >
           <span className="text-xl">💇‍♀️</span> Ready for a new look?{" "}
           <br className="md:hidden" /> Get in touch with us today!
         </motion.p>
         <motion.div
           className="flex items-center justify-center mb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 1 }}
-          viewport={{ once: true }}
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          transition={{ delay: 0.3 }}
+          viewport={{ once: false }}
         >
           <Phone className="mr-2 size-8 text-primary" />
           <span className="text-xl font-semibold">123-456-7890</span>
@@ -35,7 +35,7 @@ export function Contact() {
             { icon: Facebook, title: "Facebook" },
             { icon: TwitterLogoIcon, title: "Twitter" },
           ].map((social, index) => {
-            let delay = 0.9 + index * 0.2;
+            // let delay = 0.3 + index * 0.2;
 
             return (
               <motion.div
@@ -43,8 +43,8 @@ export function Contact() {
                 className="flex flex-col items-center justify-center gap-2 py-8 text-center transition bg-white rounded-md shadow-md cursor-pointer h-max dark:bg-muted hover:bg-primary hover:text-white dark:hover:bg-primary group"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
-                transition={{ delay }}
-                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                viewport={{ once: false }}
               >
                 <social.icon className="mr-2 size-7 group-hover:text-white text-primary" />
                 <span className="text-muted-foreground group-hover:text-white">

@@ -10,7 +10,7 @@ export function Features() {
       </h2>
       <div className="grid grid-cols-1 gap-8 xl:grid-cols-3 md:grid-cols-2 md:py-20">
         {features?.map((feature, index) => {
-          let delay = 0.5 + index * 0.2;
+          // let delay = 0.3 + index * 0.2;
 
           return (
             <motion.div
@@ -18,8 +18,8 @@ export function Features() {
               className="flex items-start p-6 bg-white rounded-lg shadow-md dark:bg-muted"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
-              transition={{ delay: delay }}
-              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: false }}
             >
               <feature.icon className="flex-shrink-0 w-12 h-12 mr-4 text-primary" />
               <div>

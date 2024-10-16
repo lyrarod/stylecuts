@@ -13,7 +13,7 @@ export function About() {
           initial={{ x: -60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           <h2 className="mb-4 text-xl font-bold text-primary">About Us</h2>
           <p className="mb-4">
@@ -32,7 +32,7 @@ export function About() {
           initial={{ x: 60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           <img
             src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?q=80&w=2036&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -47,8 +47,8 @@ export function About() {
           className="my-8 lg:pl-8 lg:w-1/2 md:mb-0"
           initial={{ x: 60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 1 }}
+          viewport={{ once: false }}
         >
           <h2 className="mb-4 text-xl font-bold text-primary">About Us</h2>
           <p className="mb-4">
@@ -66,8 +66,8 @@ export function About() {
           className="lg:w-1/2"
           initial={{ x: -60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          viewport={{ once: true }}
+          transition={{ delay: 0.5, duration: 1 }}
+          viewport={{ once: false }}
         >
           <img
             src="https://images.unsplash.com/photo-1600948835780-9c4a8b55cf50?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
