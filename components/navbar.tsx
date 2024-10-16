@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { Link } from "react-scroll";
-import { motion } from "framer-motion";
+import { Link, animateScroll } from "react-scroll";
+import { animate, motion } from "framer-motion";
 import { Menu, X, Scissors } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -19,12 +19,12 @@ export function Navbar() {
     <header className="sticky top-0 z-50 shadow-sm backdrop-blur bg-background/60">
       <nav className="container px-4 mx-auto">
         <div className="flex items-center justify-between py-4">
-          <Link to="home" offset={-70}>
+          <a onClick={() => animateScroll.scrollToTop({ duration: 0 })}>
             <div className="flex items-center cursor-pointer select-none">
               <Scissors className="w-8 h-8 text-primary" />
               <span className="ml-2 text-xl font-bold">StyleCuts</span>
             </div>
-          </Link>
+          </a>
           <div className="hidden space-x-8 md:flex">
             {[
               { to: "home", label: "Home" },
@@ -35,12 +35,10 @@ export function Navbar() {
               <Link
                 key={index}
                 to={link.to}
-                href={"#"}
                 spy={true}
-                hashSpy={true}
                 offset={link.to === "home" ? -70 : -68}
                 activeClass={"active"}
-                className="font-medium transition hover:text-primary"
+                className="font-medium transition cursor-pointer hover:text-primary"
               >
                 {link.label}
               </Link>
@@ -50,13 +48,7 @@ export function Navbar() {
           <div className="items-center hidden gap-x-2 md:flex">
             <ModeToggle />
             <Button asChild>
-              <Link
-                to="contact"
-                href={"#"}
-                spy={true}
-                hashSpy={true}
-                offset={0}
-              >
+              <Link to="contact" className="cursor-pointer">
                 Contact
               </Link>
             </Button>
@@ -88,12 +80,10 @@ export function Navbar() {
                 <Link
                   key={index}
                   to={link.to}
-                  href={"#"}
                   spy={true}
-                  hashSpy={true}
                   offset={-270}
                   activeClass={"active"}
-                  className="font-medium transition hover:text-primary"
+                  className="font-medium transition cursor-pointer hover:text-primary"
                   onClick={() => setIsOpen((prev) => !prev)}
                 >
                   {link.label}
