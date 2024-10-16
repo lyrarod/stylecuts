@@ -27,9 +27,9 @@ export function Newsletter() {
         initial={{ y: 30, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.3, duration: 1 }}
-        viewport={{ once: false }}
+        viewport={{ once: false, amount: "all" }}
       >
-        <Mails className="self-center mb-8 md:size-12 size-10 text-primary" />
+        <Mails className="self-center mb-8 md:size-12 size-8 text-primary" />
         <h2 className="mb-4 text-xl font-bold md:text-3xl">
           Stay Stylish with Our Newsletter
         </h2>
