@@ -35,7 +35,7 @@ export function ModeToggle() {
         </Button>
       ) : (
         <Button variant="ghost" size="icon">
-          <LoaderPinwheel className="animate-spin" />
+          <LoaderPinwheel className="animate-spin size-5" />
         </Button>
       )}
     </>
