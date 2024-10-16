@@ -2,7 +2,7 @@
 import React from "react";
 import { Section } from ".";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Mail, Mails } from "lucide-react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
@@ -23,12 +23,13 @@ export function Newsletter() {
   return (
     <Section id="newsletter" className="bg-secondary md:py-24">
       <motion.div
-        className="max-w-4xl mx-auto text-center md:py-20"
+        className="container flex flex-col max-w-4xl mx-auto text-center md:py-20"
         initial={{ y: 40, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
         viewport={{ once: true }}
       >
+        <Mails className="self-center mb-8 md:size-12 size-10 text-primary" />
         <h2 className="mb-4 text-xl font-bold md:text-3xl">
           Stay Stylish with Our Newsletter
         </h2>
