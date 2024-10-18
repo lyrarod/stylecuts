@@ -7,7 +7,12 @@ export function Contact() {
   return (
     <Section id="contact" className="">
       <div className="max-w-2xl mx-auto text-center md:py-20">
-        <h2 className="mb-8 text-3xl font-bold text-primary">Contact Us</h2>
+        <div className="flex items-center justify-center w-full mb-16 select-none gap-x-4">
+          <h2 className="pb-1 text-3xl font-bold text-center border-b lg:text-4xl xl:text-5xl text-primary border-primary w-fit">
+            Contact Us
+          </h2>
+        </div>
+
         <motion.p
           className="mb-8 text-muted-foreground"
           initial={{ scale: 0 }}

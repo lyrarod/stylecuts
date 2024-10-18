@@ -4,9 +4,12 @@ import { motion } from "framer-motion";
 export function Services() {
   return (
     <Section id="services" className="">
-      <h2 className="mb-16 text-3xl font-bold text-center text-primary">
-        Our Services
-      </h2>
+      <div className="flex items-center justify-center w-full mb-16 select-none gap-x-4">
+        <h2 className="pb-1 text-3xl font-bold text-center border-b lg:text-4xl xl:text-5xl text-primary border-primary w-fit">
+          Our Services
+        </h2>
+      </div>
+
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 md:py-20">
         {services?.map((service, index) => {
           // let delay = 0.3 + index * 0.2;

@@ -1,12 +1,15 @@
+import { Scissors } from "lucide-react";
 import { Section } from ".";
 import { motion } from "framer-motion";
 
 export function About() {
   return (
     <Section id="about" className="">
-      <h2 className="mb-16 text-3xl font-bold text-center text-primary">
-        About Us
-      </h2>
+      <div className="flex items-center justify-center w-full mb-16 select-none gap-x-4">
+        <h2 className="pb-1 text-3xl font-bold text-center border-b lg:text-4xl xl:text-5xl text-primary border-primary w-fit">
+          About Us
+        </h2>
+      </div>
       <div className="flex flex-col-reverse items-center justify-between md:py-20 lg:flex-row">
         <motion.div
           className="pr-8 my-8 lg:w-1/2 md:mb-0"
