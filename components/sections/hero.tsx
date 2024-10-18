@@ -19,7 +19,7 @@ export function Hero() {
       </div>
       <div className="relative z-10 text-center">
         <motion.h1
-          className="mb-4 text-4xl font-bold md:text-6xl"
+          className="mb-4 text-4xl font-bold md:text-6xl select-none"
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 1 }}
@@ -29,7 +29,7 @@ export function Hero() {
           <span className="text-primary drop-shadow-md">StyleCuts</span>
         </motion.h1>
         <motion.p
-          className="mb-8 text-sm md:text-xl text-muted-foreground px-10 sm:px-0"
+          className="mb-8 text-sm md:text-xl text-muted-foreground px-10 sm:px-0 select-none"
           initial={{ y: 40, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
