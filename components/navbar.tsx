@@ -16,7 +16,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 shadow-sm backdrop-blur bg-background/60">
+    <header className="sticky top-0 z-50 shadow dark:shadow-none dark:border-b backdrop-blur bg-background/60">
       <nav className="container px-4 mx-auto">
         <div className="flex items-center justify-between py-4">
           <a onClick={() => animateScroll.scrollToTop({ duration: 0 })}>
