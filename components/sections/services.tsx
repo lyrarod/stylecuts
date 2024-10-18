@@ -1,3 +1,4 @@
+import { Scissors } from "lucide-react";
 import { Section } from ".";
 import { motion } from "framer-motion";
 
@@ -5,8 +6,9 @@ export function Services() {
   return (
     <Section id="services" className="">
       <div className="flex items-center justify-center w-full mb-16 select-none gap-x-4">
-        <h2 className="pb-1 text-3xl font-bold text-center border-b lg:text-4xl xl:text-5xl text-primary border-primary w-fit">
+        <h2 className="relative pb-1 text-3xl font-bold text-center border-b lg:text-4xl xl:text-5xl text-primary border-primary w-fit">
           Our Services
+          <Scissors className="absolute -top-1/2 -left-14 animate-in text-muted size-12" />
         </h2>
       </div>
 

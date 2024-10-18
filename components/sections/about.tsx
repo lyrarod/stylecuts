@@ -6,8 +6,9 @@ export function About() {
   return (
     <Section id="about" className="">
       <div className="flex items-center justify-center w-full mb-16 select-none gap-x-4">
-        <h2 className="pb-1 text-3xl font-bold text-center border-b lg:text-4xl xl:text-5xl text-primary border-primary w-fit">
+        <h2 className="relative pb-1 text-3xl font-bold text-center border-b lg:text-4xl xl:text-5xl text-primary border-primary w-fit">
           About Us
+          <Scissors className="absolute -top-1/2 -right-14 scale-x-[-1] animate-in text-muted size-12" />
         </h2>
       </div>
       <div className="flex flex-col-reverse items-center justify-between md:py-20 lg:flex-row">
