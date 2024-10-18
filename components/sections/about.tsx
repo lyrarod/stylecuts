@@ -12,7 +12,7 @@ export function About() {
           className="pr-8 my-8 lg:w-1/2 md:mb-0"
           initial={{ x: -60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 1 }}
+          transition={{ delay: 0.3, duration: 1, ease: "easeInOut" }}
           viewport={{ once: false }}
         >
           <h2 className="mb-4 text-xl font-bold text-primary">About Us</h2>
@@ -31,7 +31,7 @@ export function About() {
           className="lg:w-1/2"
           initial={{ x: 60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 1 }}
+          transition={{ delay: 0.3, duration: 1, ease: "easeInOut" }}
           viewport={{ once: false }}
         >
           <img
@@ -47,7 +47,7 @@ export function About() {
           className="my-8 lg:pl-8 lg:w-1/2 md:mb-0"
           initial={{ x: 60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
+          transition={{ delay: 0.6, duration: 1, ease: "easeInOut" }}
           viewport={{ once: false }}
         >
           <h2 className="mb-4 text-xl font-bold text-primary">About Us</h2>
@@ -66,7 +66,7 @@ export function About() {
           className="lg:w-1/2"
           initial={{ x: -60, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
+          transition={{ delay: 0.6, duration: 1, ease: "easeInOut" }}
           viewport={{ once: false }}
         >
           <img
